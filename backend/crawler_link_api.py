@@ -42,7 +42,7 @@ class Bookmark(BaseModel):
     url: str
 
 # Add bookmark endpoint
-@router.post("/bookmark")
+@router.post("/crawler")
 async def add_bookmark(bookmark: Bookmark):
     url = bookmark.url
     

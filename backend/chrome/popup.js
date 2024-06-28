@@ -18,13 +18,13 @@ document.getElementById('transcribeButton').addEventListener('click', function()
     })
     .then(response => {
       if (!response.ok) {
-        throw new Error('유튜브 동영상 전사 API 호출 실패: ' + response.status);
+        throw new Error('유튜브 영상이 없습니다.');
       }
       return response.json();
     })
     .then(data => {
       if (data.success) {
-        resultDiv.textContent = '유튜브 동영상 전사 완료';
+        resultDiv.textContent = '북마크에 저장 되었습니다.';
       } else {
         throw new Error(data.detail || '유튜브 동영상 전사 실패');
       }
@@ -66,7 +66,7 @@ document.getElementById('pdfButton').addEventListener('click', function() {
     })
     .then(data => {
       if (data.success) {
-        resultDiv.textContent = 'PDF 링크 텍스트 추출 완료';
+        resultDiv.textContent = '북마크에 저장 되었습니다.';
       } else {
         throw new Error(data.detail || 'PDF 링크 텍스트 추출 실패');
       }
@@ -92,7 +92,7 @@ document.getElementById('crawlingButton').addEventListener('click', function() {
     let url = tabs[0].url;
 
     // PDF 링크 텍스트 추출 API 호출
-    fetch('http://localhost:8000/api/bookmark', {
+    fetch('http://localhost:8000/api/crawler', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -107,7 +107,7 @@ document.getElementById('crawlingButton').addEventListener('click', function() {
     })
     .then(data => {
       if (data.success) {
-        resultDiv.textContent = '크롤링 텍스트 추출 완료';
+        resultDiv.textContent = '북마크에 저장 되었습니다.';
       } else {
         throw new Error(data.detail || '크롤링 텍스트 추출 실패');
       }
