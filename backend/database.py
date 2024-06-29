@@ -62,3 +62,14 @@ class Database:
             self.conn.rollback()
             raise
 
+    def insert_pdf(self, url, content) :
+        try:
+            self.cursor.execute("INSERT INTO test_table (url, content) VALUES (%s, %s)",(url, content))
+            self.conn.commit()
+            pdf_id = self.cursor.lastrowid
+            return pdf_id
+        except Error as e :
+            print(f"pdf 텍스트 삽입 에러: {e}")
+            self.conn.rollback()
+            raise
+
